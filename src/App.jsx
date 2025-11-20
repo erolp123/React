@@ -1,56 +1,42 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import Search from "./Components/Search";
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  </div>
-  )
+    <main>
+<div className="pattern" />
+
+<div className="wrapper" />
+<header>
+  <img src="./hero.png" alt="Hero Banner"/>
+      <h1> Find <span className="text-gradient">Movies</span> You'll Enjoy Without the hassle </h1>
+</header>
+
+<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+
+    </main>
+  );
+};
+
+const url = 'https://imdb236.p.rapidapi.com/api/imdb/cast/nm0000190/titles';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': 'c30cbc4b0emshab85b37801fc293p1c8dbejsnbda485768cfd',
+		'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
 }
 
-export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default App;
 
 /*
 import './App.css'
